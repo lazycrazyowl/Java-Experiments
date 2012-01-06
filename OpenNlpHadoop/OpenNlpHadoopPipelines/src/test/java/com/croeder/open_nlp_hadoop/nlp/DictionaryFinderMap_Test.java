@@ -11,7 +11,7 @@ public class DictionaryFinderMap_Test {
 	
 	@Test
 	public void test_1() throws IOException {
-		DictionaryFinderMapper dfm = new DictionaryFinderMapper();
+		DictionaryFinder dfm = new DictionaryFinder();
 		String[] tokens = {
 				"The",
 				"lipopolysaccharide",

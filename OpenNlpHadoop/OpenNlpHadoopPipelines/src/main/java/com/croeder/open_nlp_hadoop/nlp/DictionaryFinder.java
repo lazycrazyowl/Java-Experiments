@@ -10,11 +10,11 @@ import java.io.IOException;
 // TODO: use tokenizer for splitting names and synonyms into tokens the same 
 // way they will be found in text.
 
-public class DictionaryFinderMapper {
+public class DictionaryFinder {
 	DictionaryNameFinder _dnf; 
 	static final TokenizerMapper tm = new TokenizerMapper();
 	
-	public DictionaryFinderMapper() 
+	public DictionaryFinder() 
 	throws IOException {
 		Dictionary dict = new Dictionary();
 		

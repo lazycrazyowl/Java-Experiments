@@ -12,12 +12,12 @@ public class Dictionary_Test {
 		Dictionary dict = new Dictionary();
 		dict.put("1", new StringList("chair", "seat", "stool"));
 		dict.put("2", new StringList("car","automobile","ride"));
-		Assert.assertTrue(dict.contains(new StringList("car")));
+		Assert.assertTrue(dict.contains(new StringList("car", "automobile", "ride")));
 		Assert.assertFalse(dict.contains(new StringList("foobar")));
-		Assert.assertEquals(6, dict.size());
-		dict.remove(new StringList("car"));
-		Assert.assertFalse(dict.contains(new StringList("car")));
-		Assert.assertEquals(5, dict.size());
+		Assert.assertEquals(2, dict.size());
+		dict.remove(new StringList("car", "automobile", "ride"));
+		Assert.assertFalse(dict.contains(new StringList("car", "automobile", "ride")));
+		Assert.assertEquals(1, dict.size());
 	}
 
   //public void put(String id, StringList tokens) {
