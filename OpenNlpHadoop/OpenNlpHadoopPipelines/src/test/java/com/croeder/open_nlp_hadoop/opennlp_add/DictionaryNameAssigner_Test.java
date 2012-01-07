@@ -22,11 +22,12 @@ public class DictionaryNameAssigner_Test  {
 	
 		DictionaryNameAssigner dna = new DictionaryNameAssigner(dict);	
 		String[] tokens = {"The", "chair", "was", "in", "the", "car"};
-  		Span[] spans = dna.find(tokens);
+  		DictionaryNameAssigner.Annotation[] annos = dna.find(tokens);
 
-		Assert.assertTrue(0 < spans.length);
-
-	    Assert.assertEquals(new Span(1,2), spans[0]);	
-	    Assert.assertEquals(new Span(5,6), spans[1]);	
+		Assert.assertTrue(0 < annos.length);
+		Assert.assertEquals(annos[0].getId(), "1");
+		Assert.assertEquals(annos[0].getSpan(), new Span(1,2));
+		Assert.assertEquals(annos[1].getSpan(), new Span(5,6));
+		Assert.assertEquals(annos[1].getId(), "2");
 	}	
 }

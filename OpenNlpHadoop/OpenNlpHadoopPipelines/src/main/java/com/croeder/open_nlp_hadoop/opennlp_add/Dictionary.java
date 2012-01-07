@@ -113,6 +113,10 @@ public class Dictionary implements Iterable<StringList> {
       entryMap.put(new StringListWrapper(tokens, caseSensitive), id);
   }
 
+  public String get(StringList tokens) {
+    return entryMap.get(new StringListWrapper(tokens, caseSensitive));
+  }
+
   /**
    * Checks if this dictionary has the given entry.
    *

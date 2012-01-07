@@ -31,8 +31,24 @@ import opennlp.tools.util.StringList;
  */
 public class DictionaryNameAssigner  {
 
-  private Dictionary mDictionary;
+	public static class Annotation {
+		Span span;
+		String id;
+	
+		public Annotation(Span span, String id) {
+			this.span = span; 
+			this.id = id;
+		}
+	
+		public String getId()   { return id; }
+		public Span   getSpan() { return span; }
 
+		public String toString() {
+			return "Annotation:" + id + " span:" + span.toString();
+		}		
+	}
+
+  private Dictionary mDictionary;
   private Index mMetaDictionary;
 
   public DictionaryNameAssigner(Dictionary dict) {
@@ -40,17 +56,14 @@ public class DictionaryNameAssigner  {
     mMetaDictionary = new Index(mDictionary.iterator());
   }
 
-  public Span[] find(String[] tokenStrings) {
-    List<Span> foundNames = new LinkedList<Span>();
+  public Annotation[] find(String[] tokenStrings) {
+    List<Annotation> foundNames = new LinkedList<Annotation>();
 
     for (int startToken = 0; startToken < tokenStrings.length; startToken++) {
-
-      Span foundName = null;
-
+      Annotation foundName = null;
       String  tokens[] = new String[]{};
 
       for (int endToken = startToken; endToken < tokenStrings.length; endToken++) {
-
         String token = tokenStrings[endToken];
 
         // TODO: improve performance here
@@ -60,11 +73,10 @@ public class DictionaryNameAssigner  {
         tokens = newTokens;
 
         if (mMetaDictionary.contains(token)) {
-
           StringList tokenList = new StringList(tokens);
-
           if (mDictionary.contains(tokenList)) {
-            foundName = new Span(startToken, endToken + 1);
+			Span span = new Span(startToken, endToken + 1);
+			foundName = new Annotation(span, mDictionary.get(tokenList));
           }
         }
         else {
@@ -77,7 +89,7 @@ public class DictionaryNameAssigner  {
       }
     }
 
-    return (Span[]) foundNames.toArray(new Span[foundNames.size()]);
+    return (Annotation[]) foundNames.toArray(new Annotation[foundNames.size()]);
   }
   
   public void clearAdaptiveData() {
