@@ -48,14 +48,10 @@ public class TokenizerMapper extends Mapper<LongWritable, Text, LongWritable, Te
 	throws IOException, InterruptedException {
 		String sentence = value.toString();
 		int j=0;
-		for (String t : tokenize(sentence)) {
+		for (String t : tokenizer.tokenize(sentence)) {
 			context.write(new LongWritable( (key.get() * 10000 + j++)), 
 					new Text(t) );
 		}
 
-	}
-	
-	public String[] tokenize(String s) {
-		return tokenizer.tokenize(s);
 	}
 }

@@ -18,8 +18,6 @@ import opennlp.tools.sentdetect.SentenceDetectorME;
 
 // TODO: fix path to resources
 // TODO: put a real xml to text translation in there
-// TODO: understand map pipelines well enough to know if the key needs to change
-//    from .nxml to .txt or not
 
 public class XmlToSentenceMapper extends Mapper<Text, Text, Text, Text> {
 	SentenceDetector sentenceDetector;

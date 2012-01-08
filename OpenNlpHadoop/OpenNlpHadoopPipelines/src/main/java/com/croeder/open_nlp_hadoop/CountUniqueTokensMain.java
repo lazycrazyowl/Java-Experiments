@@ -20,7 +20,6 @@ import com.croeder.open_nlp_hadoop.hadoop.WholeFileInputFormat;
 import com.croeder.open_nlp_hadoop.hadoop.TokenCountMapper;
 import com.croeder.open_nlp_hadoop.hadoop.TokenCountReducer;
 import com.croeder.open_nlp_hadoop.hadoop.TokenizerMapper;
-import com.croeder.open_nlp_hadoop.hadoop.XmlSentenceMapper;
 import com.croeder.open_nlp_hadoop.hadoop.XmlToSentenceMapper;
 
 
@@ -39,11 +38,12 @@ public class CountUniqueTokensMain {
 		Path pathC = new Path("tempC");
 		Path pathD = new Path("tempD");
 		
-		// XML to Text
+		System.out.println("================= XML to Text ===============");
 		Job job = new Job();
 		job.setInputFormatClass(WholeFileInputFormat.class);
-		job.setJarByClass(XmlSentenceMapper.class);
-		WholeFileInputFormat.addInputPath(job,  new Path("src/main/resources/BMC_Biochem"));
+		job.setJarByClass(XmlToSentenceMapper.class);
+		//WholeFileInputFormat.addInputPath(job,  new Path("src/main/resources/BMC_Biochem"));
+		WholeFileInputFormat.addInputPath(job,  new Path("src/main/resources/BMC_Biochem_small"));
 		FileOutputFormat.setOutputPath(job, pathA);
 		JobConf jobConf = new JobConf(false);
 		job.setMapperClass(XmlToSentenceMapper.class);
@@ -53,14 +53,12 @@ public class CountUniqueTokensMain {
 		job.setOutputValueClass(Text.class);
 		job.waitForCompletion(true);
 		
-		System.out.println("================= finishing 1 starting 2 ===============");
-
+		System.out.println("=================  Tokenize ===============");
 		Job job_2 = createMapperJob(pathA, pathB, TokenizerMapper.class, LongWritable.class, Text.class);
 		job_2.waitForCompletion(true);
 		
-		System.out.println("================= finishing 2 starting 3 ===============");
-		
-		Job job_3 = new Job();//createMapperJob(pathB, pathC, TokenCountMapper.class, LongWritable.class, Text.class, Text.class, IntWritable.class);
+		System.out.println("================= Count Tokens  ===============");
+		Job job_3 = new Job();
 		job_3.setJarByClass(TokenCountMapper.class);
 		WholeFileInputFormat.addInputPath(job_3,  pathB);
 		FileOutputFormat.setOutputPath(job_3, pathC);

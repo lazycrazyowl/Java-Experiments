@@ -39,7 +39,7 @@ public class DictionaryAssigner {
 		_dna = new DictionaryNameAssigner(dict);
 	}
 	
-	DictionaryNameAssigner.Annotation[] find(String[] tokens) {
+	public DictionaryNameAssigner.Annotation[] find(String[] tokens) {
 		if (_dna != null) {
 			return _dna.find(tokens);
 		}
