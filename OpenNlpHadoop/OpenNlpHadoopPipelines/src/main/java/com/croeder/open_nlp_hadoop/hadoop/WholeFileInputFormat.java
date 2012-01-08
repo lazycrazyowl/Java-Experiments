@@ -1,4 +1,4 @@
-package com.croeder.open_nlp_hadoop.nlp;
+package com.croeder.open_nlp_hadoop.hadoop;
 
 
 import java.io.IOException;

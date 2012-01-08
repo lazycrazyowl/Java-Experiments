@@ -1,4 +1,4 @@
-package com.croeder.open_nlp_hadoop.nlp;
+package com.croeder.open_nlp_hadoop.hadoop;
 
 import opennlp.tools.util.StringList;
 import opennlp.tools.dictionary.Dictionary;
@@ -18,13 +18,13 @@ import opennlp.tools.sentdetect.SentenceDetectorME;
 
 // TODO: fix path to resources
 
-public class XmlSentenceMapper extends Mapper<Text, Text, Text, Text> {
+public class SentenceMapper extends Mapper<Text, Text, Text, Text> {
 	SentenceDetector sentenceDetector;
 	
 	@Override
 	public void map(Text key, Text value, Context context)
 	throws IOException, InterruptedException {
-		String fileContents = value.toString().replace("<", " ").replace(">"," ");
+		String fileContents = value.toString();
 		int i=0;
 		for (String s : getSentences(fileContents)) {
 			context.write(new Text(key.toString() + ":" + i++ ), 
@@ -33,7 +33,7 @@ public class XmlSentenceMapper extends Mapper<Text, Text, Text, Text> {
 
 	}
 
-	public XmlSentenceMapper() {
+	public SentenceMapper() {
 		InputStream modelIn=null;
 		try {
 			modelIn = new FileInputStream("src/main/resources/en-sent.bin");
