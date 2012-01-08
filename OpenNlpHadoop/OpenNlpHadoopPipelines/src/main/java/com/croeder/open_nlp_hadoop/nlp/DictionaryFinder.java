@@ -4,8 +4,11 @@ import opennlp.tools.namefind.DictionaryNameFinder;
 import opennlp.tools.util.Span;
 import opennlp.tools.util.StringList;
 import opennlp.tools.dictionary.Dictionary;
+
 import java.io.File;
 import java.io.IOException;
+
+import com.croeder.open_nlp_hadoop.hadoop.TokenizerMapper;
 
 // TODO: use tokenizer for splitting names and synonyms into tokens the same 
 // way they will be found in text.

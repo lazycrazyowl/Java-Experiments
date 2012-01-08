@@ -23,16 +23,14 @@ public class Dictionary_Test {
 		dict.put("1", new StringList("chair", "seat", "stool"));
 		dict.put("2", new StringList("car","automobile","ride"));
 		StringList sl = new StringList("car", "automobile", "ride");
-		DictionaryNameAssigner.Annotation a = dict.find(sl) ;
-		String id = a.getId(); 
-		assertEquals("2", id);
+		assertEquals("2", dict.get(sl));
 	}
 	@Test
 	public void test_3() {
 		Dictionary dict = new Dictionary();
 		dict.put("1", new StringList("chair", "seat", "stool"));
 		dict.put("2", new StringList("car","automobile","ride"));
-		Assert.assertEquals("1", dict.find(new StringList("chair", "seat", "stool")) );
+		Assert.assertEquals("1", dict.get(new StringList("chair", "seat", "stool")) );
 	}
 	@Test
 	public void test_4() {
@@ -60,7 +58,7 @@ public class Dictionary_Test {
 		Dictionary dict = new Dictionary();
 		dict.put("1", new StringList("chair", "seat", "stool"));
 		dict.put("2", new StringList("car","automobile","ride"));
-		Assert.assertEquals(dict.find(    new StringList("chair", "seat", "stool")), "1");
+		Assert.assertEquals(dict.get(    new StringList("chair", "seat", "stool")), "1");
 	}
 	@Test
 	public void test_8() {
@@ -70,7 +68,7 @@ public class Dictionary_Test {
 		dict.remove(new StringList("car", "automobile", "ride"));
 		Assert.assertFalse( dict.contains(new StringList("car", "automobile", "ride")));
 		Assert.assertTrue(  dict.contains(new StringList("chair", "seat", "stool")));
-		Assert.assertEquals(dict.find(    new StringList("chair", "seat", "stool")), "1");
+		Assert.assertEquals(dict.get(    new StringList("chair", "seat", "stool")), "1");
 		Assert.assertEquals(1, dict.size());
 	}
 

@@ -1,9 +1,12 @@
 package com.croeder.open_nlp_hadoop.nlp;
 
 import com.croeder.open_nlp_hadoop.opennlp_add.DictionaryNameAssigner;
+import com.croeder.open_nlp_hadoop.opennlp_add.Dictionary;
+import com.croeder.open_nlp_hadoop.hadoop.TokenizerMapper;
+
 import opennlp.tools.util.Span;
 import opennlp.tools.util.StringList;
-import com.croeder.open_nlp_hadoop.opennlp_add.Dictionary;
+
 import java.io.File;
 import java.io.IOException;
 
