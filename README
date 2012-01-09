@@ -1,0 +1,7 @@
+This is a project to play with some NLP technologies outside of UIMA.
+I've been working on scaling UIMA pipelines over SGE and want to see
+how that works with Hadoop. The pipelines at work use SGE to link
+the analysis engines and move annotations from one to another. 
+In order to understand sesame better, I want to experiment with
+using triples to store the annotations instead of UIMA.
+
