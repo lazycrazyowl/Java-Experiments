@@ -59,12 +59,14 @@ public class ProReader implements Iterator<DictionaryEntry> {
 					id = s.split(" ")[1];
 				}
 				if (s.startsWith("name:")) {
-					name = s.split(" ")[1];
+					// name: foo bar baz
+					name = s.split(":")[1].trim();
 				}
 				if (s.startsWith("def:")) {
 					def = s.split(" ")[1];
 				}
 				if (s.startsWith("synonym:")) {
+					// synonym: "foo bar baz"
 					synonyms.add(s.split("\"")[1]);
 				}
 				if (s.length() == 0) {

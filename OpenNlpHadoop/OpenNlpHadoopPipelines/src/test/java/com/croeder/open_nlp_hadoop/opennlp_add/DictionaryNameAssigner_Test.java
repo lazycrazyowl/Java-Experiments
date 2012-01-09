@@ -11,7 +11,7 @@ public class DictionaryNameAssigner_Test  {
   	//public Span[] find(String[] tokenStrings) {
 
 	@Test
-	public void test() {
+	public void test_0() {
 		Dictionary dict = new Dictionary();
 		dict.put("1", new StringList("chair"));
 		dict.put("1", new StringList("seat"));
@@ -28,6 +28,27 @@ public class DictionaryNameAssigner_Test  {
 		Assert.assertEquals(annos[0].getId(), "1");
 		Assert.assertEquals(annos[0].getSpan(), new Span(1,2));
 		Assert.assertEquals(annos[1].getSpan(), new Span(5,6));
+		Assert.assertEquals(annos[1].getId(), "2");
+	}	
+	@Test
+	public void test() {
+		Dictionary dict = new Dictionary();
+		dict.put("1", new StringList("chair"));
+		dict.put("1", new StringList("seat"));
+		dict.put("1", new StringList("stool"));
+		dict.put("3", new StringList("sports car"));
+		dict.put("2", new StringList("sports","car"));
+		dict.put("2", new StringList("automobile"));
+		dict.put("2", new StringList("ride"));
+	
+		DictionaryNameAssigner dna = new DictionaryNameAssigner(dict);	
+		String[] tokens = {"The", "chair", "was", "in", "the", "sports","car"};
+  		DictionaryNameAssigner.Annotation[] annos = dna.find(tokens);
+
+		Assert.assertTrue(0 < annos.length);
+		Assert.assertEquals(annos[0].getId(), "1");
+		Assert.assertEquals(annos[0].getSpan(), new Span(1,2));
+		Assert.assertEquals(annos[1].getSpan(), new Span(5,7));
 		Assert.assertEquals(annos[1].getId(), "2");
 	}	
 }

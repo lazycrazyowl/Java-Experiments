@@ -34,21 +34,32 @@ public class DictionaryNameAssigner  {
 	public static class Annotation {
 		Span span;
 		String id;
+		StringList[] stringLists;
 	
-		public Annotation(Span span, String id) {
+		public Annotation(Span span, String id, StringList ... sl) {
 			this.span = span; 
 			this.id = id;
+			this.stringLists = sl;
 		}
 	
 		public String getId()   { return id; }
 		public Span   getSpan() { return span; }
 
 		public String toString() {
-			return "Annotation:" + id + " span:" + span.toString();
+			return "Annotation: id:\"" + id 
+				+ "\" span:" + span.toString() 
+				+ stringListsToString();
 		}		
+		private String stringListsToString() {
+			StringBuilder sb = new StringBuilder();
+			for (StringList sl : stringLists) {
+				sb.append(sl.toString() + ", ");
+			}
+			return sb.toString();	
+		}
 	}
 
-  private Dictionary mDictionary;
+  private com.croeder.open_nlp_hadoop.opennlp_add.Dictionary mDictionary;
   private Index mMetaDictionary;
 
   public DictionaryNameAssigner(Dictionary dict) {
@@ -76,7 +87,10 @@ public class DictionaryNameAssigner  {
           StringList tokenList = new StringList(tokens);
           if (mDictionary.contains(tokenList)) {
 			Span span = new Span(startToken, endToken + 1);
-			foundName = new Annotation(span, mDictionary.get(tokenList));
+
+// need to use mDictionary find() and use the tokenList you get there!!!
+
+			foundName = new Annotation(span, mDictionary.get(tokenList), tokenList);
           }
         }
         else {

@@ -54,4 +54,5 @@ public class TokenizerMapper extends Mapper<LongWritable, Text, LongWritable, Te
 		}
 
 	}
+	public String[] tokenize(String s) { return tokenizer.tokenize(s); }
 }

@@ -42,7 +42,9 @@ public class CountUniqueIdsMain {
 		Job job = new Job();
 		job.setInputFormatClass(WholeFileInputFormat.class);
 		job.setJarByClass(XmlToSentenceMapper.class);
-		WholeFileInputFormat.addInputPath(job,  new Path("src/main/resources/BMC_Biochem_small"));
+		//WholeFileInputFormat.addInputPath(job,  new Path("src/main/resources/BMC_Biochem_small"));
+		WholeFileInputFormat.addInputPath(job,  new Path("src/main/resources/BMC_Biochem"));
+		//WholeFileInputFormat.addInputPath(job,  new Path("/home/croeder/work/data"));
 		FileOutputFormat.setOutputPath(job, pathA);
 		job.setMapperClass(XmlToSentenceMapper.class);
 		//FileSystem.delete(Path f, boolean recursive);

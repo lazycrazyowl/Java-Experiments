@@ -43,7 +43,6 @@
 				<target>1.6</target>
 			</configuration>
 		</plugin>
-
 		<plugin>
 			<groupId>org.codehaus.mojo</groupId>
 			<artifactId>exec-maven-plugin</artifactId>
@@ -54,9 +53,28 @@
 				</execution>
 			</executions>
 			<configuration>
-				<mainClass>com.croeder.open_nlp_hadoop.nlp.FileMain</mainClass>
+				<mainClass>com.croeder.open_nlp_hadoop.nlp.CountUniqueIdsMain</mainClass>
+  				<argument>-Xmx3g</argument>
 			</configuration>
 		</plugin>
+<!--
+		<plugin>
+			<groupId>org.codehaus.mojo</groupId>
+			<artifactId>exec-maven-plugin</artifactId>
+			<version>1.1</version>
+			<executions>
+				<execution>
+					<goals><goal>exec</goal></goals>
+				</execution>
+			</executions>
+			<configuration>
+				<executable>java</executable>
+				<classpath/>
+  				<argument>-Xmx3g</argument>
+				<argument>com.croeder.open_nlp_hadoop.nlp.CountUniqueIdsMain</argument>
+			</configuration>
+		</plugin>
+-->
 	</plugins>
 </build>
 
