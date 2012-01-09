@@ -4,6 +4,7 @@ import java.net.URL;
 import java.net.URLClassLoader;
 
 import java.io.IOException;
+import java.io.File;
 
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.IntWritable;
@@ -43,8 +44,9 @@ public class CountUniqueIdsMain {
 		job.setInputFormatClass(WholeFileInputFormat.class);
 		job.setJarByClass(XmlToSentenceMapper.class);
 		//WholeFileInputFormat.addInputPath(job,  new Path("src/main/resources/BMC_Biochem_small"));
-		WholeFileInputFormat.addInputPath(job,  new Path("src/main/resources/BMC_Biochem"));
+		//WholeFileInputFormat.addInputPath(job,  new Path("src/main/resources/BMC_Biochem"));
 		//WholeFileInputFormat.addInputPath(job,  new Path("/home/croeder/work/data"));
+		WholeFileInputFormat.addInputPathsFromFile(job,  new File("/home/croeder/work/data"));
 		FileOutputFormat.setOutputPath(job, pathA);
 		job.setMapperClass(XmlToSentenceMapper.class);
 		//FileSystem.delete(Path f, boolean recursive);
