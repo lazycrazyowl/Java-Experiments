@@ -25,7 +25,8 @@ public class TokenizerMapper extends Mapper<LongWritable, Text, LongWritable, Te
 	public TokenizerMapper() {
 		InputStream modelIn=null;
 		try {
-			modelIn =  new FileInputStream("src/main/resources/en-token.bin");
+			//modelIn =  new FileInputStream("src/main/resources/en-token.bin");
+			modelIn = this.getClass().getClassLoader().getResourceAsStream("en-token.bin");
 			TokenizerModel model = new TokenizerModel(modelIn);
 			tokenizer = new TokenizerME(model);
 		}

@@ -36,7 +36,8 @@ public class XmlToSentenceMapper extends Mapper<Text, Text, Text, Text> {
 	public XmlToSentenceMapper() {
 		InputStream modelIn=null;
 		try {
-			modelIn = new FileInputStream("src/main/resources/en-sent.bin");
+			//modelIn = new FileInputStream("src/main/resources/en-sent.bin");
+			modelIn = this.getClass().getClassLoader().getResourceAsStream("en-sent.bin");
 			SentenceModel model = new SentenceModel(modelIn);
 			sentenceDetector = new SentenceDetectorME(model);
 		}

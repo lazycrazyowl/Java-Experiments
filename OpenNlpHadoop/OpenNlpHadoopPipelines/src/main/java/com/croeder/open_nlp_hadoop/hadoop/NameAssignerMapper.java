@@ -31,7 +31,8 @@ public class NameAssignerMapper extends Mapper<LongWritable, Text, Text, IntWrit
 		da = new DictionaryAssigner();
 		InputStream modelIn=null;
 		try {
-			modelIn =  new FileInputStream("src/main/resources/en-token.bin");
+			//modelIn =  new FileInputStream("src/main/resources/en-token.bin");
+			modelIn =  this.getClass().getClassLoader().getResourceAsStream("en-token.bin");
 			TokenizerModel model = new TokenizerModel(modelIn);
 			tokenizer = new TokenizerME(model);
 		}
