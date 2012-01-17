@@ -11,24 +11,34 @@
   <dependencies>
   	<dependency>
   		<groupId>org.openrdf.sesame</groupId>
-		<artifactId>sesame-runtime</artifactId>
+		<artifactId>sesame-repository-sail</artifactId>
 		<version>${sesameVersion}</version>
   	</dependency>
   	<dependency>
+  		<groupId>org.openrdf.sesame</groupId>
+		<artifactId>sesame-sail-memory</artifactId>
+		<version>${sesameVersion}</version>
+  	</dependency>
+	<dependency>
+		<groupId>org.slf4j</groupId>
+		<artifactId>slf4j-simple</artifactId>
+		<version>1.5.4</version>
+	</dependency>
+	<dependency>
+  		<groupId>org.openrdf.sesame</groupId>
+		<artifactId>sesame-queryparser-sparql</artifactId>
+		<version>${sesameVersion}</version>
+	</dependency>
+	<dependency>
+  		<groupId>org.openrdf.sesame</groupId>
+		<artifactId>sesame-queryparser-serql</artifactId>
+		<version>${sesameVersion}</version>
+	</dependency>
+	<dependency>
   		<groupId>org.openrdf.sesame</groupId>
 		<artifactId>sesame-rio-rdfxml</artifactId>
 		<version>${sesameVersion}</version>
-  	</dependency>
-  	<dependency>
-  		<groupId>org.openrdf.sesame</groupId>
-		<artifactId>sesame-queryresultio</artifactId>
-		<version>${sesameVersion}</version>
-  	</dependency>
-  	<dependency>
-  		<groupId>org.openrdf.sesame</groupId>
-		<artifactId>sesame-queryresultio-sparqlxml</artifactId>
-		<version>${sesameVersion}</version>
-  	</dependency>
+	</dependency>
   </dependencies>
   
   <repositories>
